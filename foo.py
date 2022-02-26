@@ -70,17 +70,17 @@ def foo (normativi, prohodnoi_bal, kolvo_mest):
       year2025 = []
 
       for i in range(14):
-            year2020.append(2020)
+            year2020.append('2020')
       for i in range(14):
-            year2021.append(2021)
+            year2021.append('2021')
       for i in range(14):
-            year2022.append(2022)
+            year2022.append('2022')
       for i in range(14):
-            year2023.append(2023)
+            year2023.append('2023')
       for i in range(14):
-            year2024.append(2024)
+            year2024.append('2024')
       for i in range(14):
-            year2025.append(2025)
+            year2025.append('2025')
       year = year2020 + year2021 + year2022 + year2023 + year2024 + year2025
 
       list_fs=['Количество поступивших в высшие учебные заведения региона',

@@ -44,9 +44,9 @@ app.layout = html.Div( children=[
 
 def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichestvo_mest):
     df=foo(selected_prohodnoi_bal, selected_normativi, selected_kolichestvo_mest)
-    fig = px.histogram(df, x="fs", y="value",
-             color='year', barmode='group',color_discrete_sequence=px.colors.qualitative.Pastel)
 
+    fig = px.bar(data_frame=df, x='index', y='value', custom_data=[df['fs']],barmode='group', hover_name='fs', color='year')
+    fig.update_traces()
     return fig
 
 if __name__ == '__main__':
