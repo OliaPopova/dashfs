@@ -109,3 +109,6 @@ list_fs = ['Количество поступивших в высшие учеб
            'Нормативы (повышающие коэффициенты) для ВУЗов']
 list_fs = list_fs + list_fs + list_fs + list_fs + list_fs
 print(len(list_fs))
+
+print(df_marks.loc[df_marks['index'] == 'F1'])
+
