@@ -84,15 +84,6 @@ for i in range(14):
    year2025.append(2025)
 year=year2020+year2021+year2022+year2023+year2024+year2025
 
-mydictionary = {
-            'index': list_index,
-            'value': value,
-            'year':year}
-
-      # create dataframe using dictionary
-df_marks = pd.DataFrame(mydictionary)
-print(df_marks)
-
 list_fs = ['Количество поступивших в высшие учебные заведения региона',
            'Количество поступивших в средние специальные учебные заведения региона',
            'Количество трудоустроенных выпускников ВУЗов региона',
@@ -107,8 +98,19 @@ list_fs = ['Количество поступивших в высшие учеб
            'Проходной балл ЕГЭ в ВУЗы',
            'Количество обучающихся в классах профильного обучения',
            'Нормативы (повышающие коэффициенты) для ВУЗов']
-list_fs = list_fs + list_fs + list_fs + list_fs + list_fs
-print(len(list_fs))
+list_fs=list_fs+list_fs+list_fs+list_fs+list_fs+list_fs
+mydictionary = {
+            'index': list_index,
+            'value': value,
+            'year': year,
+            'fs': list_fs}
 
-print(df_marks.loc[df_marks['index'] == 'F1'])
 
+df_marks = pd.DataFrame(mydictionary)
+
+
+data = df_marks.loc[df_marks['index'] == 'F1']
+print(data['fs'])
+for fs in data['fs']:
+    title=fs
+print (title)

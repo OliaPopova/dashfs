@@ -5,11 +5,8 @@ data_excel = wb.sheets['Лист1']
 matr = data_excel.range('A17:O31').options(pd.DataFrame, header=1, index=True).value
 
 norm = [0.162, 0.054, 0.45, 0.43, 0.0011, 0.86, 0.64, 0.36, 0.369, 0.048, 0.97, 0.75, 0.713, 0.51]
-t = 2020
-
 p0 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 p0[3] = -0.005
-
 def foo (normativi, prohodnoi_bal, kolvo_mest):
       p0[6] = kolvo_mest-norm[6]
       p0[11] = prohodnoi_bal-norm[11]
@@ -107,4 +104,5 @@ def foo (normativi, prohodnoi_bal, kolvo_mest):
 
       # create dataframe using dictionary
       df_marks = pd.DataFrame(mydictionary)
+
       return df_marks
