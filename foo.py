@@ -1,13 +1,10 @@
 import pandas as pd
-import xlwings as xw
-
-excel_app = xw.App(visible=False)
-excel_book = excel_app.books.open('data.xlsx')
-data_excel = excel_book.sheets['Лист1']
-matr = data_excel.range('A17:O31').options(pd.DataFrame, header=1, index=True).value
-excel_book.save()
-excel_book.close()
-excel_app.quit()
+matr=pd.read_excel(io='data.xlsx',
+              engine='openpyxl',
+              usecols='A:O',
+              header=16, # в excel это №5
+              nrows=14,
+              index_col=0)
 norm = [0.162, 0.054, 0.45, 0.43, 0.0011, 0.86, 0.64, 0.36, 0.369, 0.048, 0.97, 0.75, 0.713, 0.51]
 p0 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 p0[3] = -0.005
