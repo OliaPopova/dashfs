@@ -11,7 +11,7 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],
                 meta_tags=[{'name': 'viewport',
                             'content': 'width=device-width, initial-scale=1.0'}]
                 )
-
+server = app.server
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
@@ -174,4 +174,4 @@ def hide_graph(clickData):
     return {'display':'none'}
 
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8000)
+    app.run_server(debug=True)
