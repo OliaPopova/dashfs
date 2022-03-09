@@ -20,10 +20,11 @@ app.layout = dbc.Container([
                     dbc.Card([
                         html.P(
                             "Проходной балл ЕГЭ",
-                            className="card-text", style={'margin': 'auto'}),
+                            className="card-text",
+                            style={'margin': 'auto'}),
                         dbc.CardBody([
                             dcc.Slider(id='prohodnoi_bal', value=0.75, min=0.75, max=1, step=0.01, marks=None)]),
-                    ], style={"width": "25%", 'border-radius': '15px', 'margin': '-7px auto 1px', "height": "70%"}),
+                    ], style={"width": "25%", 'border-radius': '15px', "border":"1px #E0E0E0", 'margin': '-7px auto 1px', "height": "70%"}),
                     dbc.Card([
                         html.P(
                             "Нормативы",
@@ -42,7 +43,7 @@ app.layout = dbc.Container([
             ], style={'backgroundColor': '#686c6e', 'font-weight': 'semibold', 'font': 'Open Sans',
                       'border-radius': '10px', 'margin': '2% auto 0%', "height": "75%"}),
         ], width={'size': 10, 'offset': 1}),
-    ], style={'height': '100%', 'background-color': '#323436'}),
+    ], style={'background-color': '#323436'}),
     dbc.Row([
         dbc.Col(
             html.Div(
@@ -53,7 +54,7 @@ app.layout = dbc.Container([
                 }))
         )
 
-    ], style={'background-color': '#323436'}),  # Horizontal:start,center,end,between,around
+    ], style={ 'background-color': '#323436'}),  # Horizontal:start,center,end,between,around
 
     dbc.Row([
         dbc.Col(
@@ -84,7 +85,7 @@ app.layout = dbc.Container([
                       'margin': '2% 3% 2% 2%'})
         ),
     ], style={'background-color': '#323436'})
-], fluid=True)
+],style={'height': '100vh', 'background-color': '#323436'}, fluid=True)
 
 
 @app.callback(
