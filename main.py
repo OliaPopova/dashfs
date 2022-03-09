@@ -42,7 +42,7 @@ app.layout = dbc.Container([
             ], style={'backgroundColor': '#686c6e', 'font-weight': 'semibold', 'font': 'Open Sans',
                       'border-radius': '10px', 'margin': '2% auto 0%', "height": "75%"}),
         ], width={'size': 10, 'offset': 1}),
-    ], style={'background-color': '#323436'}),
+    ], style={'height': '100%', 'background-color': '#323436'}),
     dbc.Row([
         dbc.Col(
             html.Div(
