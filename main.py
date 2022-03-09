@@ -45,7 +45,11 @@ app.layout = dbc.Container([
     dbc.Row([
         dbc.Col(
             html.Div(
-                dcc.Graph(id='fig1', figure={}))
+                dcc.Graph(id='fig1', figure={}, config={
+                      'staticPlot': True,     # True, False
+                      'displayModeBar': True,  # True, False, 'hover'
+                      'watermark': True,
+                        }))
         )
 
     ], style={'background-color': '#323436'}),  # Horizontal:start,center,end,between,around
@@ -53,7 +57,11 @@ app.layout = dbc.Container([
     dbc.Row([
         dbc.Col(
             html.Div(
-                dcc.Graph(id='fig2', figure={})),
+                dcc.Graph(id='fig2', figure={}, config={
+                      'staticPlot': True,     # True, False
+                      'displayModeBar': True,  # True, False, 'hover'
+                      'watermark': True,
+                        })),
         ),
 
     ], style={'background-color': '#323436'}),
