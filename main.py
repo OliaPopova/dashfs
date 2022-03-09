@@ -31,14 +31,14 @@ app.layout = dbc.Container([
                             className="card-text", style={'margin': 'auto'}),
                         dbc.CardBody([
                             dcc.Slider(id='normativi', value=0.7, min=0.5, max=1, step=0.01, marks=None)]),
-                    ], style={"width": "25%", 'border-radius': '15px', 'margin': '-7px auto 1px', "height": "70%"}),
+                    ], style={"width": "25%", 'border-radius': '15px', "border":"1px #E0E0E0", 'margin': '-7px auto 1px', "height": "70%"}),
                     dbc.Card([
                         html.P(
                             "Количество бюджетных мест",
                             className="card-text", style={'margin': 'auto'}),
                         dbc.CardBody([
                             dcc.Slider(id='kolichestvo_mest', value=0.7, min=0.5, max=1, step=0.01, marks=None)]),
-                    ], style={"width": "25%", 'border-radius': '15px', 'margin': '-7px auto 1px', "height": "70%"}),
+                    ], style={"width": "25%", 'border-radius': '15px', "border":"1px #E0E0E0", 'margin': '-7px auto 1px', "height": "70%"}),
                 ], align="center"),
             ], style={'backgroundColor': '#686c6e', 'font-weight': 'semibold', 'font': 'Open Sans',
                       'border-radius': '10px', 'margin': '2% auto 0%', "height": "75%"}),
