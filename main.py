@@ -21,26 +21,28 @@ app.layout = dbc.Container([
                         html.P(
                             "Проходной балл ЕГЭ",
                             className="card-text",
-                            style={'margin': 'auto'}),
+                            style={'margin': 'auto', 'font-size': '18px', 'font-weight': 'normal', 'font-family': 'Open Sans'}),
                         dbc.CardBody([
                             dcc.Slider(id='prohodnoi_bal', value=0.75, min=0.75, max=1, step=0.01, marks=None)]),
                     ], style={"width": "25%", 'border-radius': '15px', "border":"1px #E0E0E0", 'margin': '-7px auto 1px', "height": "70%"}),
                     dbc.Card([
                         html.P(
                             "Нормативы",
-                            className="card-text", style={'margin': 'auto'}),
+                            className="card-text",
+                            style={'margin': 'auto', 'font-size': '18px', 'font-weight': 'normal', 'font-family': 'Open Sans'}),
                         dbc.CardBody([
                             dcc.Slider(id='normativi', value=0.7, min=0.5, max=1, step=0.01, marks=None)]),
                     ], style={"width": "25%", 'border-radius': '15px', "border":"1px #E0E0E0", 'margin': '-7px auto 1px', "height": "70%"}),
                     dbc.Card([
                         html.P(
                             "Количество бюджетных мест",
-                            className="card-text", style={'margin': 'auto'}),
+                            className="card-text",
+                            style={'margin': 'auto', 'font-size': '18px', 'font-weight': 'normal', 'font-family': 'Open Sans'}),
                         dbc.CardBody([
                             dcc.Slider(id='kolichestvo_mest', value=0.7, min=0.5, max=1, step=0.01, marks=None)]),
                     ], style={"width": "25%", 'border-radius': '15px', "border":"1px #E0E0E0", 'margin': '-7px auto 1px', "height": "70%"}),
                 ], align="center"),
-            ], style={'backgroundColor': '#686c6e', 'font-weight': 'semibold', 'font': 'Open Sans',
+            ], style={'backgroundColor': '#686c6e', 'font-weight': 'semi-bold', 'font': 'Open Sans',
                       'border-radius': '10px', 'margin': '2% auto 0%', "height": "75%"}),
         ], width={'size': 10, 'offset': 1}),
     ], style={'background-color': '#323436'}),
@@ -74,13 +76,13 @@ app.layout = dbc.Container([
             dbc.Card([
                 html.P(
                     "Количество обучающихся в классе профильного обучения.",
-                    className="card-text", style={'margin-left': '3%'}),
+                    className="card-text", style={'margin-left': '3%', 'font-size': '20px', 'font-weight': 'bold', 'font-family': 'Open Sans'}),
                 html.P(
                     "Информация о факторе.",
-                    className="card-text", style={'margin-left': '3%'}),
+                    className="card-text", style={'margin-left': '3%', 'font-size': '20px', 'font-weight': 'bold', 'font-family': 'Open Sans'}),
                 html.P(
                     " Какие показатели влияют на данный фактор.",
-                    className="card-text", style={'margin-left': '3%'})
+                     className="card-text", style={'margin-left': '3%', 'font-size': '20px', 'font-weight': 'bold', 'font-family': 'Open Sans'})
             ], style={"width": "40%", 'font-weight': 'semibold', 'font': 'Open Sans', 'border-radius': '15px',
                       'margin': '2% 3% 2% 2%'})
         ),
