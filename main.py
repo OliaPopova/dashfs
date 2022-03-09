@@ -7,7 +7,6 @@ from dash.dependencies import Output, Input
 import plotly.express as px
 import dash_bootstrap_components as dbc
 
-
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],
                 meta_tags=[{'name': 'viewport',
                             'content': 'width=device-width, initial-scale=1.0'}]
@@ -39,29 +38,31 @@ app.layout = dbc.Container([
                             dcc.Slider(id='kolichestvo_mest', value=0.7, min=0.5, max=1, step=0.01, marks=None)]),
                     ], style={"width": "25%", 'border-radius': '15px', 'margin': '-7px auto 1px', "height": "70%"}),
                 ], align="center"),
-            ], style={'backgroundColor': '#686c6e','font-weight': 'semibold', 'font':'Open Sans', 'border-radius': '10px', 'margin': '2% auto 0%', "height": "75%"}),
+            ], style={'backgroundColor': '#686c6e', 'font-weight': 'semibold', 'font': 'Open Sans',
+                      'border-radius': '10px', 'margin': '2% auto 0%', "height": "75%"}),
         ], width={'size': 10, 'offset': 1}),
     ], style={'background-color': '#323436'}),
     dbc.Row([
         dbc.Col(
             html.Div(
                 dcc.Graph(id='fig1', figure={}, config={
-                      'staticPlot': True,     # True, False
-                      'displayModeBar': True,  # True, False, 'hover'
-                      'watermark': True,
-                        }))
+                    'staticPlot': False,  # True, False
+                    'displayModeBar': False,  # True, False, 'hover'
+                    'watermark': True,
+                }))
         )
 
     ], style={'background-color': '#323436'}),  # Horizontal:start,center,end,between,around
 
     dbc.Row([
         dbc.Col(
-            html.Div(
-                dcc.Graph(id='fig2', figure={}, config={
-                      'staticPlot': True,     # True, False
-                      'displayModeBar': True,  # True, False, 'hover'
-                      'watermark': True,
-                        })),
+            html.Div(id="graph-container",
+                     children=[
+                         dcc.Graph(id='fig2', figure={}, config={
+                             'staticPlot': False,  # True, False
+                             'displayModeBar': False,  # True, False, 'hover'
+                             'watermark': True
+                         })]),
         ),
 
     ], style={'background-color': '#323436'}),
@@ -78,7 +79,8 @@ app.layout = dbc.Container([
                 html.P(
                     " Какие показатели влияют на данный фактор.",
                     className="card-text", style={'margin-left': '3%'})
-            ], style={"width": "40%", 'font-weight': 'semibold', 'font':'Open Sans', 'border-radius': '15px', 'margin': '2% 3% 2% 2%'})
+            ], style={"width": "40%", 'font-weight': 'semibold', 'font': 'Open Sans', 'border-radius': '15px',
+                      'margin': '2% 3% 2% 2%'})
         ),
     ], style={'background-color': '#323436'})
 ], fluid=True)
@@ -124,6 +126,7 @@ def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichest
         x=1
     ))
     return (fig)
+
 @app.callback(
     Output('fig2', 'figure'),
     [Input('fig1', 'clickData'),
@@ -131,32 +134,43 @@ def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichest
      Input('normativi', 'value'),
      Input('kolichestvo_mest', 'value')])
 def display_click_data(clickData, selected_prohodnoi_bal, selected_normativi, selected_kolichestvo_mest):
-    df = foo(selected_prohodnoi_bal, selected_normativi, selected_kolichestvo_mest)
-    x_v = 0
-    for line in clickData['points']:
-        x_v = line["x"]
-    data = df.loc[df['index'] == x_v]
-    for fs in data['fs']:
-        title = fs
-    fig2 = px.bar(data_frame=data, x='year', y='value', custom_data=[data['fs']], hover_name='fs',
-                  color='year',
-                  color_discrete_map={
-                      '2020': '#2dbfcf',
-                      '2021': '#309190',
-                      '2022': '#387bc7',
-                      '2023': '#465c66',
-                      '2024': '#35b0e6',
-                      '2025': '#b6d3e0'}, template='plotly', title=title)
-    fig2.update_layout(
-        plot_bgcolor='#565859',
-        paper_bgcolor='#323436', font_color="#bec4c4", xaxis_title=None,
-        yaxis_title=None, title_x=0.5)
-    fig2.update_yaxes(showgrid=True, gridwidth=1, gridcolor='LightGray')
-    fig2.update_layout(legend=None)
-    for data in fig2.data:
-        data["width"] = 0.35
-    return fig2
+    if clickData:
+        df = foo(selected_prohodnoi_bal, selected_normativi, selected_kolichestvo_mest)
+        x_v = 0
+        for line in clickData['points']:
+            x_v = line["x"]
+        data = df.loc[df['index'] == x_v]
+        for fs in data['fs']:
+            title = fs
+        fig2 = px.bar(data_frame=data, x='year', y='value', custom_data=[data['fs']], hover_name='fs',
+                      color='year',
+                      color_discrete_map={
+                          '2020': '#2dbfcf',
+                          '2021': '#309190',
+                          '2022': '#387bc7',
+                          '2023': '#465c66',
+                          '2024': '#35b0e6',
+                          '2025': '#b6d3e0'}, template='plotly', title=title)
+        fig2.update_layout(
+            plot_bgcolor='#565859',
+            paper_bgcolor='#323436', font_color="#bec4c4", xaxis_title=None,
+            yaxis_title=None, title_x=0.5)
+        fig2.update_yaxes(showgrid=True, gridwidth=1, gridcolor='LightGray')
+        fig2.update_layout(legend=None)
+        for data in fig2.data:
+            data["width"] = 0.35
+        return fig2
+    else:
+        fig_empty=px.bar()
+        return fig_empty
 
+
+
+@app.callback(Output('graph-container', 'style'), [Input('fig1', 'clickData')])
+def hide_graph(clickData):
+    if clickData:
+        return {'display':'block'}
+    return {'display':'none'}
 
 if __name__ == '__main__':
     app.run_server(debug=True, port=8000)
