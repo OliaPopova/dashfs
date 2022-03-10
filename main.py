@@ -107,15 +107,15 @@ def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichest
         go.Bar(name='скрыть 2020 г.', x=data0['index'], y=data0['value'], hovertext=data0['fs'],
                marker_color='#2dbfcf'),
         go.Bar(name='скрыть 2021 г.', x=data1['index'], y=data1['value'], hovertext=data1['fs'],
-               marker_color='#309190'),
+               marker_color='#1fad94'),
         go.Bar(name='скрыть 2022 г.', x=data2['index'], y=data2['value'], hovertext=data2['fs'],
-               marker_color='#387bc7'),
+               marker_color='#148e95'),
         go.Bar(name='скрыть 2023 г.', x=data3['index'], y=data3['value'], hovertext=data3['fs'],
-               marker_color='#465c66'),
+               marker_color='#0068b4'),
         go.Bar(name='скрыть 2024 г.', x=data4['index'], y=data4['value'], hovertext=data4['fs'],
-               marker_color='#558787'),
+               marker_color='#309ec1'),
         go.Bar(name='скрыть 2025 г.', x=data5['index'], y=data5['value'], hovertext=data5['fs'],
-               marker_color='#b6d3e0')
+               marker_color='#b0d9ff')
     ])
     fig.update_layout(barmode='group', legend_title_text='Год', yaxis_range=[0, 30],
                       plot_bgcolor='#565859',
@@ -149,11 +149,11 @@ def display_click_data(clickData, selected_prohodnoi_bal, selected_normativi, se
                       color='year',
                       color_discrete_map={
                           '2020': '#2dbfcf',
-                          '2021': '#309190',
-                          '2022': '#387bc7',
-                          '2023': '#465c66',
-                          '2024': '#35b0e6',
-                          '2025': '#b6d3e0'}, template='plotly', title=title)
+                          '2021': '#1fad94',
+                          '2022': '#148e95',
+                          '2023': '#0068b4',
+                          '2024': '#309ec1',
+                          '2025': '#b0d9ff'}, template='plotly', title=title)
         fig2.update_layout(
             plot_bgcolor='#565859',
             paper_bgcolor='#323436', font_color="#bec4c4", xaxis_title=None,
