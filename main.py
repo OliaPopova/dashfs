@@ -119,12 +119,12 @@ def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichest
     ])
     fig.update_layout(barmode='group', legend_title_text='Год', yaxis_range=[0, 30],
                       plot_bgcolor='#565859',
-                      paper_bgcolor='#323436', font_color="#bec4c4")
+                      paper_bgcolor='#323436', font_color="white", margin=dict( b=10, pad=15))
     fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='LightGray')
     fig.update_layout(legend=dict(
         orientation="h",
         yanchor="bottom",
-        y=1.02,
+        y=1.06,
         xanchor="right",
         x=1
     ))
@@ -156,12 +156,12 @@ def display_click_data(clickData, selected_prohodnoi_bal, selected_normativi, se
                           '2025': '#b0d9ff'}, template='plotly', title=title)
         fig2.update_layout(
             plot_bgcolor='#565859',
-            paper_bgcolor='#323436', font_color="#bec4c4", xaxis_title=None,
-            yaxis_title=None, title_x=0.5)
+            paper_bgcolor='#323436', font_color="white", xaxis_title=None,
+            yaxis_title=None, title_x=0.5, margin=dict( b=10, pad=15))
         fig2.update_layout(legend=dict(
             orientation="h",
             yanchor="bottom",
-            y=1.02,
+            y=1.06,
             xanchor="right",
             x=1,
             title='Год'
