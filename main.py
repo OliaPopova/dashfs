@@ -20,7 +20,9 @@ app.layout = dbc.Container([
                     dbc.Card([
                         html.P(
                             "Проходной балл ЕГЭ",
-                            className="card-text", style={'margin': 'auto', 'font-size': '18px', 'font-weight': 'normal', 'font-family': 'Open Sans'}),
+                            className="card-text",
+                            style={'margin': 'auto', 'font-size': '18px', 'font-weight': 'normal',
+                                   'font-family': 'Open Sans'}),
                         dbc.CardBody([
                             dcc.Slider(id='prohodnoi_bal', value=0.75, min=0.75, max=1, step=0.01, marks=None)]),
                     ], style={"width": "25%", 'border-radius': '15px', 'margin': '-7px auto 1px', "height": "70%"}),
@@ -28,7 +30,8 @@ app.layout = dbc.Container([
                         html.P(
                             "Нормативы",
                             className="card-text",
-                            style={'margin': 'auto', 'font-size': '18px', 'font-weight': 'normal', 'font-family': 'Open Sans'}),
+                            style={'margin': 'auto', 'font-size': '18px', 'font-weight': 'normal',
+                                   'font-family': 'Open Sans'}),
                         dbc.CardBody([
                             dcc.Slider(id='normativi', value=0.7, min=0.5, max=1, step=0.01, marks=None)]),
                     ], style={"width": "25%", 'border-radius': '15px', 'margin': '-7px auto 1px', "height": "70%"}),
@@ -36,7 +39,8 @@ app.layout = dbc.Container([
                         html.P(
                             "Количество бюджетных мест",
                             className="card-text",
-                            style={'margin': 'auto', 'font-size': '18px', 'font-weight': 'normal', 'font-family': 'Open Sans'}),
+                            style={'margin': 'auto', 'font-size': '18px', 'font-weight': 'normal',
+                                   'font-family': 'Open Sans'}),
                         dbc.CardBody([
                             dcc.Slider(id='kolichestvo_mest', value=0.7, min=0.5, max=1, step=0.01, marks=None)]),
                     ], style={"width": "25%", 'border-radius': '15px', 'margin': '-7px auto 1px', "height": "70%"}),
@@ -65,27 +69,32 @@ app.layout = dbc.Container([
                              'staticPlot': False,  # True, False
                              'displayModeBar': False,  # True, False, 'hover'
                              'watermark': True
-                         })]),
-        ),
+                         }),
 
+                         dbc.Card([
+                             html.P(
+                                 "Количество обучающихся в классе профильного обучения.",
+                                 className="card-text",
+                                 style={'margin-left': '3%', 'font-size': '20px', 'font-weight': 'bold',
+                                        'font-family': 'Open Sans'}),
+                             html.P(
+                                 "Информация о факторе.",
+                                 className="card-text",
+                                 style={'margin-left': '3%', 'font-size': '20px', 'font-weight': 'bold',
+                                        'font-family': 'Open Sans'}),
+                             html.P(
+                                 " Какие показатели влияют на данный фактор.",
+                                 className="card-text",
+                                 style={'margin-left': '3%', 'font-size': '20px', 'font-weight': 'bold',
+                                        'font-family': 'Open Sans'})
+                         ], style={"width": "40%", 'font-weight': 'semibold', 'font': 'Open Sans',
+                                   'border-radius': '15px',
+                                   'margin': '2% 3% 2% 5%'})
+                     ]),
+
+        ),
     ], style={'background-color': '#323436'}),
 
-    dbc.Row([
-        dbc.Col(
-            dbc.Card([
-                html.P(
-                    "Количество обучающихся в классе профильного обучения.",
-                    className="card-text", style={'margin-left': '3%', 'font-size': '20px', 'font-weight': 'bold', 'font-family': 'Open Sans'}),
-                html.P(
-                    "Информация о факторе.",
-                    className="card-text", style={'margin-left': '3%', 'font-size': '20px', 'font-weight': 'bold', 'font-family': 'Open Sans'}),
-                html.P(
-                    " Какие показатели влияют на данный фактор.",
-                    className="card-text", style={'margin-left': '3%', 'font-size': '20px', 'font-weight': 'bold', 'font-family': 'Open Sans'})
-            ], style={"width": "40%", 'font-weight': 'semibold', 'font': 'Open Sans', 'border-radius': '15px',
-                      'margin': '2% 3% 2% 5%'})
-        ),
-    ], style={'background-color': '#323436'})
 ], fluid=True)
 
 
@@ -119,7 +128,7 @@ def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichest
     ])
     fig.update_layout(barmode='group', legend_title_text='Год', yaxis_range=[0, 30],
                       plot_bgcolor='#565859',
-                      paper_bgcolor='#323436', font_color="white", margin=dict( b=10, pad=15))
+                      paper_bgcolor='#323436', font_color="white", margin=dict(b=10, pad=15))
     fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='LightGray')
     fig.update_layout(legend=dict(
         orientation="h",
@@ -129,6 +138,7 @@ def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichest
         x=1
     ))
     return (fig)
+
 
 @app.callback(
     Output('fig2', 'figure'),
@@ -157,7 +167,7 @@ def display_click_data(clickData, selected_prohodnoi_bal, selected_normativi, se
         fig2.update_layout(
             plot_bgcolor='#565859',
             paper_bgcolor='#323436', font_color="white", xaxis_title=None,
-            yaxis_title=None, title_x=0.5, margin=dict( b=10, pad=15))
+            yaxis_title=None, title_x=0.5, margin=dict(b=10, pad=15))
         fig2.update_layout(legend=dict(
             orientation="h",
             yanchor="bottom",
@@ -171,16 +181,16 @@ def display_click_data(clickData, selected_prohodnoi_bal, selected_normativi, se
             data["width"] = 0.35
         return fig2
     else:
-        fig_empty=px.bar()
+        fig_empty = px.bar()
         return fig_empty
-
 
 
 @app.callback(Output('graph-container', 'style'), [Input('fig1', 'clickData')])
 def hide_graph(clickData):
     if clickData:
-        return {'display':'block'}
-    return {'display':'none'}
+        return {'display': 'block'}
+    return {'display': 'none'}
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
