@@ -21,34 +21,34 @@ app.layout = dbc.Container([
                         html.P(
                             "Проходной балл ЕГЭ",
                             className="card-text",
-                            style={'margin': 'auto', 'font-size': '18px', 'font-weight': 'normal',
+                            style={'margin': '0px 0px 0px 14%', 'font-size': '18px', 'font-weight': 'normal',
                                    'font-family': 'Open Sans'}),
                         dbc.CardBody([
-                            dcc.Slider(id='prohodnoi_bal', value=0.75, min=0.75, max=1, step=0.01, marks=None)]),
+                            dcc.Slider(id='prohodnoi_bal', value=0.75, min=0.75, max=1, step=0.01, marks=None,tooltip={"placement": "bottom", "always_visible": True})]),
                     ], style={"width": "25%", 'border-radius': '15px', "border":"1px #E0E0E0",  'margin': '-7px auto 1px', "height": "70%"}),
                     dbc.Card([
                         html.P(
                             "Нормативы",
                             className="card-text",
-                            style={'margin': 'auto', 'font-size': '18px', 'font-weight': 'normal',
+                            style={'margin': '0px 0px 0px 14%', 'font-size': '18px', 'font-weight': 'normal',
                                    'font-family': 'Open Sans'}),
                         dbc.CardBody([
-                            dcc.Slider(id='normativi', value=0.7, min=0.5, max=1, step=0.01, marks=None)]),
+                            dcc.Slider(id='normativi', value=0.6, min=0.51, max=1, step=0.01, marks=None, tooltip={"placement": "bottom", "always_visible": True})]),
                     ], style={"width": "25%", 'border-radius': '15px', "border":"1px #E0E0E0",  'margin': '-7px auto 1px', "height": "70%"}),
                     dbc.Card([
                         html.P(
                             "Количество бюджетных мест",
                             className="card-text",
-                            style={'margin': 'auto', 'font-size': '18px', 'font-weight': 'normal',
+                            style={'margin': '0px 0px 0px 14%', 'font-size': '18px', 'font-weight': 'normal',
                                    'font-family': 'Open Sans'}),
                         dbc.CardBody([
-                            dcc.Slider(id='kolichestvo_mest', value=0.7, min=0.5, max=1, step=0.01, marks=None)]),
+                            dcc.Slider(id='kolichestvo_mest', value=0.5, min=0.5, max=1, step=0.01, marks=None, tooltip={"placement": "bottom", "always_visible": True})]),
                     ], style={"width": "25%", 'border-radius': '15px', "border":"1px #E0E0E0",  'margin': '-7px auto 1px', "height": "70%"}),
                 ], align="center"),
             ], style={'backgroundColor': '#686c6e', 'font-weight': 'semi-bold', 'font': 'Open Sans',
                       'border-radius': '10px', 'margin': '2% auto 0%', "height": "75%"}),
         ], width={'size': 10, 'offset': 1}),
-    ], style={'background-color': '#323436'}),
+    ], style={'background-color': '#323436', 'margin-bottom': '2% '}),
     dbc.Row([
         dbc.Col(
             html.Div(
@@ -106,6 +106,7 @@ app.layout = dbc.Container([
 # create our callback function
 def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichestvo_mest):
     df = foo(selected_prohodnoi_bal, selected_normativi, selected_kolichestvo_mest)
+
     data0 = df.loc[df['year'] == '2020']
     data1 = df.loc[df['year'] == '2021']
     data2 = df.loc[df['year'] == '2022']
@@ -126,7 +127,7 @@ def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichest
         go.Bar(name='скрыть 2025 г.', x=data5['index'], y=data5['value'], hovertext=data5['fs'],
                marker_color='#b0d9ff')
     ])
-    fig.update_layout(barmode='group', legend_title_text='Год', yaxis_range=[0, 30],
+    fig.update_layout(legend_title_text='Год', yaxis_range=[0, 10],
                       plot_bgcolor='#565859',
                       paper_bgcolor='#323436', font_color="white", margin=dict(b=10, pad=15))
     fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='LightGray')
@@ -167,7 +168,7 @@ def display_click_data(clickData, selected_prohodnoi_bal, selected_normativi, se
         fig2.update_layout(
             plot_bgcolor='#565859',
             paper_bgcolor='#323436', font_color="white", xaxis_title=None,
-            yaxis_title=None, title_x=0.5, margin=dict(b=10, pad=15))
+            yaxis_title=None,yaxis_range=[0, 15], title_x=0.5, margin=dict(b=10, pad=15))
         fig2.update_layout(legend=dict(
             orientation="h",
             yanchor="bottom",
