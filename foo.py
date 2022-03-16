@@ -106,4 +106,6 @@ def foo(prohodnoi_bal,normativi, kolvo_mest):
     # create dataframe using dictionary
     df_marks = pd.DataFrame(mydictionary)
 
-    return df_marks
+    df = df_marks.query(" index not in ['F7', 'F12', 'F14']")
+
+    return df
