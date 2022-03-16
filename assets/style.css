@@ -1,0 +1,24 @@
+
+#fig1 .main-svg  {
+    border-radius: 20px
+}
+.js-plotly-plot .plotly .modebar-group  {
+    height: 10%;
+    width: 10%;
+}
+
+#fig2 .main-svg  {
+    border-radius: 20px
+}
+rect:hover { color: red; }
+
+#unicard .card{
+}
+
+#card1 .card{
+
+}
+
+#prohodnoi_bal .rc-slider: {
+    background: linear-gradient(to right,#8e54e9,#4776e6);
+    }
