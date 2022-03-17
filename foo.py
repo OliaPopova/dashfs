@@ -99,13 +99,12 @@ def foo(prohodnoi_bal,normativi, kolvo_mest):
 
     mydictionary = {
         'index': list_index,
-        'value': value,
-        'year': year,
+        'значение': value,
+        'год': year,
         'fs': list_fs}
 
     # create dataframe using dictionary
     df_marks = pd.DataFrame(mydictionary)
 
     df = df_marks.query(" index not in ['F7', 'F12', 'F14']")
-
     return df
