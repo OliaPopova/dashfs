@@ -1,5 +1,5 @@
 import pandas as pd
-
+import numpy as np
 matr = pd.read_excel(io='data.xlsx',
                      engine='openpyxl',
                      usecols='A:O',
@@ -15,7 +15,7 @@ kolvo_mest = 0.5
 p0[6] = kolvo_mest - norm[6]
 p0[11] = prohodnoi_bal - norm[11]
 p0[13] = normativi - norm[13]
-print(p0)
+
 p1 = (matr * p0)
 p1_list = []
 p2_list = []
@@ -55,22 +55,27 @@ year_2024_list = list(year_2024)
 year_2025 = map(sum, zip(p5_list, year_2024_list))
 year_2025_list = list(year_2025)
 
-print(f'2020 год = {year_2020_list}')
-print(f'2021 год = {year_2021_list}')
-print(f'2022 год = {year_2022_list}')
-print(f'2023 год = {year_2023_list}')
-print(f'2024 год = {year_2024_list}')
-print(f'2025 год = {year_2025_list}')
+absolut2020 = [54000, 54000, 30497, 4197800, 82455, 69.5, 31917.6, 42, 83385, 100, 31567, 42, 433400, 790.28]
+absolut2021 = [52089.92, 52089.92, 28866.29, 4178274.51, 80870.16, 72.90, 30335.05, 42, 92504.37, 100, 33724.44, 42, 447380.74, 1506.03]
+absolut2022 = [51160.38, 51160.38, 28083.93, 4168545.85, 80089.20, 74.67, 29573.44, 42, 97431.51, 100, 34857.84, 42, 454539.34, 2079.03]
+absolut2023 = [50247.42, 50247.42, 27322.78, 4158839.85, 79315.79, 76.48, 28830.96, 42, 102621.09, 100, 36029.33, 42, 461812.48, 2870.04]
+absolut2024 = [49350.75, 49350.75, 26582.26, 4149156.44, 78549.84, 78.33, 28107.12, 42, 108087.08, 100, 37240.19, 42, 469202, 3962.01]
+absolut2025 = [48470.08, 48470.08, 25861.81, 4139495.58, 77791.29, 80.23, 27401.46, 42, 113844.22, 100, 38491.75, 42, 476709.76, 5469.44]
+
+def f(x, y):
+    return x*y
+absolut2020=(list( map(f, absolut2020, year_2020_list)))
+absolut2021=(list( map(f, absolut2021, year_2021_list)))
+absolut2022=(list( map(f, absolut2022, year_2022_list)))
+absolut2023=(list( map(f, absolut2023, year_2023_list)))
+absolut2024=(list( map(f, absolut2024, year_2024_list)))
+absolut2025=(list( map(f, absolut2025, year_2025_list)))
+
 
 list_index = ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'F13', 'F14']
 list_index = list_index + list_index + list_index + list_index + list_index + list_index
 
-value = year_2020_list + year_2021_list + year_2022_list + year_2023_list + year_2024_list + year_2025_list
-print(value)
-
-# while i < len(value):
-#     value[i] = abs(value[i])
-#     i = i + 1
+value = absolut2020 + absolut2021 + absolut2022 + absolut2023 + absolut2024 + absolut2025
 
 year2020 = []
 year2021 = []
@@ -117,5 +122,6 @@ mydictionary = {
 
 # create dataframe using dictionary
 df_marks = pd.DataFrame(mydictionary)
+
 
 print(df_marks)

@@ -22,31 +22,35 @@ app.layout = dbc.Container([
             dbc.Card([
                 dbc.Row([
                     dbc.Card([
-                        dbc.Row([
-                            html.P(
-                                "Проходной балл ЕГЭ", id='text1',
-                                className="card-text",
-                                style={'margin': '3% 0px 0px 3%', 'font-size': '18px', 'font-weight': 'normal',
-                                       'font-family': 'Open Sans'}),
-                            dcc.Textarea(id='textarea1', className="textarea", readOnly=True,
-                                         style={'font-weight': 'normal', 'font-family': 'Open Sans'}),
-                        ]),
+                        dbc.Container([
+                            dbc.Row([
+                                html.P(
+                                    "Проходной балл ЕГЭ", id='text1',
+                                    className="card-text",
+                                    style={'margin': '3% 0px 0px 3%', 'font-size': '18px', 'font-weight': 'normal',
+                                           'font-family': 'Open Sans'}),
+                                dcc.Textarea(id='textarea1', className="textarea", readOnly=True,
+                                             style={'font-weight': 'normal', 'font-family': 'Open Sans'}),
+                            ]),
+                        ],className='container-fluid'),
                         dbc.CardBody([
                             dcc.Slider(id='prohodnoi_bal', value=0.75, min=0.75, max=1, step=0.01, marks=None,
                                        className="balslider")]),
                     ], style={"width": "25%", 'border-radius': '15px', "border": "1px #E0E0E0", "height": "80%"},
                         id='card1'),
                     dbc.Card([
-                        dbc.Row([
-                            html.P(
-                                "Нормативы", id='text2',
-                                className="card-text",
-                                style={'margin': '3% 0px 0px 3%', 'font-size': '18px', 'font-weight': 'normal',
-                                       'font-family': 'Open Sans'}),
+                        dbc.Container([
+                            dbc.Row([
+                                html.P(
+                                    "Нормативы", id='text2',
+                                    className="card-text",
+                                    style={'margin': '3% 0px 0px 3%', 'font-size': '18px', 'font-weight': 'normal',
+                                           'font-family': 'Open Sans'}),
 
-                            dcc.Textarea(id='textarea2', className="textarea", readOnly=True,
-                                         style={'font-weight': 'normal', 'font-family': 'Open Sans'}),
+                                dcc.Textarea(id='textarea2', className="textarea", readOnly=True,
+                                             style={'font-weight': 'normal', 'font-family': 'Open Sans'}),
 
+                            ]),
                         ]),
                         dbc.CardBody([
                             dcc.Slider(id='normativi', value=0.6, min=0.51, max=1, step=0.01, marks=None,
@@ -55,15 +59,19 @@ app.layout = dbc.Container([
                     ], style={"width": "25%", 'border-radius': '15px', "border": "1px #E0E0E0", "height": "80%"},
                         id='card2'),
                     dbc.Card([
-                        dbc.Row([
-                            html.P(
-                                "Количество бюджетных мест", id='text3',
-                                className="card-text",
-                                style={'margin': '3% 0px 0px 3%', 'font-size': '18px', 'font-weight': 'normal',
-                                       'font-family': 'Open Sans'}),
-                            dcc.Textarea(id='textarea3', className="textarea", readOnly=True,
-                                         style={'font-weight': 'normal', 'font-family': 'Open Sans'}),
-                        ]),
+                        dbc.Container([
+                            dbc.Col([
+                                html.P(
+                                    "Количество бюджетных мест", id='text3',
+                                    className="card-text",
+                                    style={'margin': '3% 0px 0px 3%', 'font-size': '18px', 'font-weight': 'normal',
+                                           'font-family': 'Open Sans'}),
+                            ],id="coltext"),
+                            dbc.Col([
+                                dcc.Textarea(id='textarea3', className="textarea", readOnly=True,
+                                             style={'font-weight': 'normal', 'font-family': 'Open Sans'}), ]),
+
+                        ], className='container-fluid'),
                         dbc.CardBody([
                             dcc.Slider(id='kolichestvo_mest', value=0.5, min=0.5, max=1, step=0.01, marks=None,
                                        className="mestaslider")]),
@@ -80,7 +88,7 @@ app.layout = dbc.Container([
     dbc.Row([
         dbc.Col(
             html.Div([
-                dcc.Graph(id='fig1', figure={}, config={
+                dcc.Graph(id='fig1', config={
                     'staticPlot': False,  # True, False
                     'displayModeBar': False,  # True, False, 'hover'
                     'watermark': True,
@@ -125,7 +133,6 @@ app.layout = dbc.Container([
 
 ], style={'height': '100vh', 'background-color': '#323436'}, fluid=True)
 
-
 @app.callback(
     Output('fig1', 'figure'),
     [Input('prohodnoi_bal', 'value'),
@@ -155,7 +162,7 @@ def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichest
         go.Bar(name='скрыть 2025 г.', x=data5['index'], y=data5['значение'], hovertext=data5['fs'],
                marker_color='#b0d9ff')
     ])
-    fig.update_layout(legend_title_text='Год', yaxis_range=[0, 9],
+    fig.update_layout(legend_title_text='Год', yaxis_range=[0, 130],
                       plot_bgcolor='#686c6e',
                       paper_bgcolor='#686c6e', font_color="white", margin=dict(b=10, pad=15))
     fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='LightGray')
@@ -202,7 +209,7 @@ def display_click_data(clickData, selected_prohodnoi_bal, selected_normativi, se
         fig2.update_layout(
             plot_bgcolor='#686c6e',
             paper_bgcolor='#686c6e', font_color="white", xaxis_title=None,
-            yaxis_title=None, yaxis_range=[0, 8], title_x=0.5, margin=dict(b=10, pad=15))
+            yaxis_title=None, yaxis_range=[0, 80], title_x=0.5, margin=dict(b=10, pad=15))
         fig2.update_layout(legend=dict(
             orientation="h",
             yanchor="bottom",
