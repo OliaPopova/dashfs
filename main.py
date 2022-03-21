@@ -1,7 +1,8 @@
 import dash
+import numpy
 import plotly.graph_objects as go
 from foo import foo
-from dash import dcc
+from dash import dcc, no_update
 from dash import html
 from dash.dependencies import Output, Input
 import plotly.express as px
@@ -15,7 +16,10 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],
 server = app.server
 app.layout = dbc.Container([
     dbc.Row([
-
+        html.P(
+            "Модель формирования регионального кадрового потенциала",
+            style={'margin': '3% 0px 0px 3%', 'font-size': '26px', 'font-weight': 'normal',
+                   'font-family': 'Open Sans', 'color': 'white'})
     ]),
     dbc.Row([
         dbc.Col([
@@ -32,7 +36,7 @@ app.layout = dbc.Container([
                                 dcc.Textarea(id='textarea1', className="textarea", readOnly=True,
                                              style={'font-weight': 'normal', 'font-family': 'Open Sans'}),
                             ]),
-                        ],className='container-fluid'),
+                        ], className='container-fluid'),
                         dbc.CardBody([
                             dcc.Slider(id='prohodnoi_bal', value=0.75, min=0.75, max=1, step=0.01, marks=None,
                                        className="balslider")]),
@@ -66,7 +70,7 @@ app.layout = dbc.Container([
                                     className="card-text",
                                     style={'margin': '3% 0px 0px 3%', 'font-size': '18px', 'font-weight': 'normal',
                                            'font-family': 'Open Sans'}),
-                            ],id="coltext"),
+                            ], id="coltext"),
                             dbc.Col([
                                 dcc.Textarea(id='textarea3', className="textarea", readOnly=True,
                                              style={'font-weight': 'normal', 'font-family': 'Open Sans'}), ]),
@@ -92,12 +96,14 @@ app.layout = dbc.Container([
                     'staticPlot': False,  # True, False
                     'displayModeBar': False,  # True, False, 'hover'
                     'watermark': True,
-                })
+                }, )
             ], className='fig1')
         )
 
     ], style={'background-color': '#323436'}),  # Horizontal:start,center,end,between,around
+    html.Div([html.Pre(id='hover')], style={'width': '30%', 'float': 'right'}),
 
+    dbc.Tooltip(),
     dbc.Row([
         dbc.Col(
             html.Div(id="graph-container",
@@ -148,30 +154,41 @@ def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichest
     data3 = df.loc[df['год'] == '2023']
     data4 = df.loc[df['год'] == '2024']
     data5 = df.loc[df['год'] == '2025']
+    my_customdata= numpy.transpose(numpy.array([df["значение"], df["ed"], df["год"]]))
     fig = go.Figure(data=[
-        go.Bar(name='скрыть 2020 г.', x=data0['index'], y=data0['значение'], hovertext=data0['fs'],
+        go.Bar(name='скрыть 2020 г.', x=data0['index'], y=data0['значение'],hovertext=data0['fs'],
                marker_color='#2dbfcf'),
-        go.Bar(name='скрыть 2021 г.', x=data1['index'], y=data1['значение'], hovertext=data1['fs'],
+        go.Bar(name='скрыть 2021 г.', x=data1['index'], y=data1['значение'],hovertext=data1['fs'],
                marker_color='#1fad94'),
-        go.Bar(name='скрыть 2022 г.', x=data2['index'], y=data2['значение'], hovertext=data2['fs'],
+        go.Bar(name='скрыть 2022 г.', x=data2['index'], y=data2['значение'],hovertext=data2['fs'],
                marker_color='#148e95'),
-        go.Bar(name='скрыть 2023 г.', x=data3['index'], y=data3['значение'], hovertext=data3['fs'],
+        go.Bar(name='скрыть 2023 г.', x=data3['index'], y=data3['значение'],hovertext=data3['fs'],
                marker_color='#0068b4'),
-        go.Bar(name='скрыть 2024 г.', x=data4['index'], y=data4['значение'], hovertext=data4['fs'],
+        go.Bar(name='скрыть 2024 г.', x=data4['index'], y=data4['значение'],hovertext=data4['fs'],
                marker_color='#309ec1'),
-        go.Bar(name='скрыть 2025 г.', x=data5['index'], y=data5['значение'], hovertext=data5['fs'],
+        go.Bar(name='скрыть 2025 г.', x=data5['index'], y=data5['значение'],hovertext=data5['fs'],
                marker_color='#b0d9ff')
     ])
+
+    fig.update_traces(
+         patch={
+             "customdata": my_customdata,
+             "hovertemplate": " Значение: %{y:.2f} %{customdata[1]} <br> %{hovertext} <br> год: %{customdata[2]} <extra></extra>"
+         },
+         overwrite=True
+     )
+
     fig.update_layout(legend_title_text='Год', yaxis_range=[0, 130],
                       plot_bgcolor='#686c6e',
-                      paper_bgcolor='#686c6e', font_color="white", margin=dict(b=10, pad=15))
-    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='LightGray')
+                      paper_bgcolor='#686c6e', font_color="#D4D4D4", margin=dict(b=10, pad=15))
+    fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='#85857d')
     fig.update_layout(legend=dict(
         orientation="h",
         yanchor="bottom",
         y=-0.3,
         xanchor="right",
-        x=1
+        x=1,
+        font_color='white'
     ))
     fig.update_layout(
         hoverlabel=dict(
@@ -197,7 +214,8 @@ def display_click_data(clickData, selected_prohodnoi_bal, selected_normativi, se
         data = df.loc[df['index'] == x_v]
         for fs in data['fs']:
             title = fs
-        fig2 = px.bar(data_frame=data, x='год', y='значение', custom_data=[data['fs']], hover_name='fs',
+        my_customdata= numpy.transpose(numpy.array([df["значение"], df["ed"], df["fs"], df["год"]]))
+        fig2 = px.bar(data_frame=data, x='год', y='значение',
                       color='год',
                       color_discrete_map={
                           '2020': '#2dbfcf',
@@ -205,10 +223,19 @@ def display_click_data(clickData, selected_prohodnoi_bal, selected_normativi, se
                           '2022': '#148e95',
                           '2023': '#0068b4',
                           '2024': '#309ec1',
-                          '2025': '#b0d9ff'}, template='plotly', title=title)
+                          '2025': '#b0d9ff'}, template='plotly', title=title, hover_name='fs')
+
+        fig2.update_traces(
+            patch={
+                "customdata": my_customdata,
+                "hovertemplate": " Значение: %{y:.2f} %{customdata[1]} <br> год:%{x}  <extra></extra>"
+            },
+            overwrite=True
+        )
+
         fig2.update_layout(
             plot_bgcolor='#686c6e',
-            paper_bgcolor='#686c6e', font_color="white", xaxis_title=None,
+            paper_bgcolor='#686c6e', font_color="#D4D4D4", xaxis_title=None,
             yaxis_title=None, yaxis_range=[0, 80], title_x=0.5, margin=dict(b=10, pad=15))
         fig2.update_layout(legend=dict(
             orientation="h",
@@ -216,15 +243,17 @@ def display_click_data(clickData, selected_prohodnoi_bal, selected_normativi, se
             y=-0.3,
             xanchor="right",
             x=1,
+            font_color='white',
             title='Год'
         ))
+
         fig2.update_layout(
             hoverlabel=dict(
                 bgcolor="#708283",
                 font_size=16,
                 font_family="Open Sans"
             ))
-        fig2.update_yaxes(showgrid=True, gridwidth=1, gridcolor='LightGray')
+        fig2.update_yaxes(showgrid=True, gridwidth=1, gridcolor='#85857d')
         for data in fig2.data:
             data["width"] = 0.35
         return fig2
