@@ -1,8 +1,14 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-body {
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+*{
   font-family: 'Open Sans', sans-serif;
+  font-weight: 600 !important;
+}
+#dashname{
+    height: 100%;
+    width: 80%;
+    max-width: 100%;
+    text-align: center;
+    margin: 3% 0% 0% 0% !important;
 }
 #fig1 .main-svg  {
     border-radius: 20px;
@@ -64,7 +70,7 @@ padding: 0% !important;
 .textarea{
     height: 30px;
     width: 43px;
-    margin-top: 4%;
+    margin-top: 2%;
     margin-right: 4%;
     margin-bottom: 0%;
     margin-left: 0%;
@@ -74,28 +80,50 @@ padding: 0% !important;
     padding: 0% !important;
     resize: none;
     outline: none;
-    text-align: center;
+    text-align: start;
     color: #5A4F4F;
+    float:right;
+    position: absolute;
+    right: 0;
+    font-size: 14px;
 }
 #text1.card-text{
     height: 30px;
     width: 250px;
-    margin: 2% 0% 3% 2% !important;
+    margin: 2% 0% 3% 3% !important;
     padding: 0% !important;
 }
 #text2.card-text{
     height: 30px;
     width: 250px;
-    margin: 2% 0% 3% 2% !important;
+    margin: 2% 0% 3% 3% !important;
     padding: 0% !important;
 }
 #text3.card-text{
     height: 30px;
     width: 250px;
-    margin: 0 !important;
+    margin: 2% 0% 3% 3% !important;
     padding: 0% !important;
 
 }
 .container{
 padding: 0% !important;]
+}
+#textareazav.textarea1{
+    max-height: 300px;
+    width: 600px;
+    height: 100px;
+    resize: none;
+    outline: none;
+    text-align: start;
+    border-radius: 11px;
+    border: none;
+    font-family: Open Sans;
+    margin: 3% 0% 3% 0% !important;
+    font-weight: 600;
+
+
+}
+#text-container{
+background-color: ##323436 !important;
 }
