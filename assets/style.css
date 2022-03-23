@@ -22,6 +22,9 @@
 #fig2 .main-svg  {
     border-radius: 20px
 }
+#fig2{
+margin: 0% 0% 3% 0%;
+}
 
 .rc-slider-step {
 background: linear-gradient(
@@ -80,7 +83,7 @@ padding: 0% !important;
     padding: 0% !important;
     resize: none;
     outline: none;
-    text-align: start;
+    text-align: center;
     color: #5A4F4F;
     float:right;
     position: absolute;
@@ -109,11 +112,7 @@ padding: 0% !important;
 .container{
 padding: 0% !important;]
 }
-#textareazav.textarea1{
-    max-height: 300px;
-    width: 600px;
-    height: 100px;
-    resize: none;
+#text{
     outline: none;
     text-align: start;
     border-radius: 11px;
@@ -121,9 +120,17 @@ padding: 0% !important;]
     font-family: Open Sans;
     margin: 3% 0% 3% 0% !important;
     font-weight: 600;
-
+    resize: none;
 
 }
+
+.txta {
+  width: 600;
+  font-size: 16px;
+  overflow: hidden;
+  line-height: 1.4;
+}
+
 #text-container{
 background-color: ##323436 !important;
 }

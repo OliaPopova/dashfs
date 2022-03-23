@@ -117,10 +117,10 @@ app.layout = dbc.Container([
                              'displayModeBar': False,  # True, False, 'hover'
                              'watermark': True
                          }),
-                         html.Div(id="text-container",
-                                  children=[
-                                      dcc.Textarea(id='textareazav', className="textarea1", readOnly=True)
-                                  ]),
+                         # html.Div(id="text-container",
+                         #          children=[
+                         #              dcc.Textarea(id='text', className="txta", readOnly=True)
+                         #          ]),
                      ]),
 
         ),
@@ -282,14 +282,14 @@ def hide_graph(clickData):
     return {'display': 'none'}
 
 
-@app.callback(Output('text-container', 'style'), Output('textareazav', 'value'), [Input('fig1', 'clickData')])
-def hide_graph(clickData):
-    if clickData:
-        for line in clickData['points']:
-            data = line['customdata']
-        text = str(data[3])
-        return {'display': 'block'}, text
-    return {'display': 'none'}, None
+# @app.callback(Output('text-container', 'style'), Output('text', 'value'), [Input('fig1', 'clickData')])
+# def hide_graph(clickData):
+#     if clickData:
+#         for line in clickData['points']:
+#             data = line['customdata']
+#         text = str(data[3])
+#         return {'display': 'block'}, text
+#     return {'display': 'none'}, None
 
 
 @app.callback(Output('textarea1', 'value'), [Input('prohodnoi_bal', 'value')])
