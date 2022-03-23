@@ -21,7 +21,7 @@ app.layout = dbc.Container([
         dbc.Col(
             html.P(
                 "Модель формирования регионального кадрового потенциала",
-                style={'margin': '3% 0px 0px 3%', 'font-size': '26px', 'font-weight': 'normal',
+                style={'font-size': '26px', 'font-weight': 'normal',
                        'font-family': 'Open Sans', 'color': 'white'}, id='dashname'),
             width={"size": 10, "offset": 2})
     ]),
@@ -185,7 +185,30 @@ def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichest
             bgcolor="#708283",
             font_size=13,
             font_family="Open Sans"
-        ))
+        ),
+    )
+    fig.update_layout(
+        xaxis=go.layout.XAxis(
+            tickangle=0)
+    )
+    fig.update_layout(
+        xaxis=dict(
+            tickmode='array',
+            tickvals=['F1','F2', 'F3', 'F4', 'F5', 'F6', 'F8', 'F9', 'F10', 'F11', 'F13'],
+            ticktext=['Кол-во <br>поступивших <br>в ООВО',
+                      'Кол-во <br>поступивших <br>в СУЗы',
+                      'Кол-во <br>трудоустроенных <br>выпускников ООВО',
+                      'Численность <br>населения <br>региона',
+                      'Доля <br>инновационных <br>предприятий',
+                      'Средний <br>балл ЕГЭ',
+                      'Число победителей <br>и призёров ВОШ',
+                      'Среднедушевой <br>доход семьи',
+                      'Уровень <br>безработицы',
+                      'Средняя З/П <br>выпускников <br>по направлениям',
+                      'Кол-во учеников <br>профильных классов']
+        )
+    )
+
     return (fig)
 
 
