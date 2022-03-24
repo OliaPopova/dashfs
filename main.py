@@ -32,7 +32,7 @@ app.layout = dbc.Container([
     ]),
     dbc.Row([
         dbc.Col([
-            dbc.Card([
+
                 dbc.Row([
                     dbc.Card([
                         dbc.Container([
@@ -94,8 +94,7 @@ app.layout = dbc.Container([
                         id='card3'),
 
                 ], align="center"),
-            ], style={'backgroundColor': '#686c6e', 'font-weight': 'semi-bold', 'font': 'Open Sans',
-                      'border-radius': '20px', 'margin': '2% auto 0%', "height": "80%"}, id='unicard'),
+
         ], width={'size': 12}),
     ], style={'background-color': '#323436', 'margin-bottom': '2% '}),
 
@@ -151,31 +150,31 @@ def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichest
     data5 = df.loc[df['год'] == '2025']
     my_customdata = numpy.transpose(numpy.array([df["значение"], df["ed"], df["год"], df["zav"]]))
     fig = go.Figure(data=[
-        go.Bar(name='скрыть 2020 г.', x=data0['index'], y=data0['значение'], hovertext=data0['fs'],
+        go.Bar(name='скрыть 2020 г.', x=data0['index'], y=data0['значение'], hovertext=data0['fs']+ '<br> год: 2020',
                marker_color='#2dbfcf'),
-        go.Bar(name='скрыть 2021 г.', x=data1['index'], y=data1['значение'], hovertext=data1['fs'],
+        go.Bar(name='скрыть 2021 г.', x=data1['index'], y=data1['значение'], hovertext=data1['fs']+ '<br> год: 2021',
                marker_color='#1fad94'),
-        go.Bar(name='скрыть 2022 г.', x=data2['index'], y=data2['значение'], hovertext=data2['fs'],
+        go.Bar(name='скрыть 2022 г.', x=data2['index'], y=data2['значение'], hovertext=data2['fs']+ '<br> год: 2022',
                marker_color='#148e95'),
-        go.Bar(name='скрыть 2023 г.', x=data3['index'], y=data3['значение'], hovertext=data3['fs'],
+        go.Bar(name='скрыть 2023 г.', x=data3['index'], y=data3['значение'], hovertext=data3['fs'] + '<br> год: 2023',
                marker_color='#0068b4'),
-        go.Bar(name='скрыть 2024 г.', x=data4['index'], y=data4['значение'], hovertext=data4['fs'],
+        go.Bar(name='скрыть 2024 г.', x=data4['index'], y=data4['значение'], hovertext=data4['fs']+ '<br> год: 2024',
                marker_color='#309ec1'),
-        go.Bar(name='скрыть 2025 г.', x=data5['index'], y=data5['значение'], hovertext=data5['fs'],
+        go.Bar(name='скрыть 2025 г.', x=data5['index'], y=data5['значение'], hovertext=data5['fs']+ '<br> год: 2025',
                marker_color='#b0d9ff')
     ])
 
     fig.update_traces(
         patch={
             "customdata": my_customdata,
-            "hovertemplate": " Значение: %{y:.2f} %{customdata[1]} <br> %{hovertext} <br> год: %{customdata[2]} <extra></extra>"
+            "hovertemplate": " Значение: %{y:.2f} %{customdata[1]} <br> %{hovertext} <extra></extra>"
         },
         overwrite=True
     )
 
     fig.update_layout(legend_title_text='Год', yaxis_range=[0, 130],
-                      plot_bgcolor='#686c6e',
-                      paper_bgcolor='#686c6e', font_color="#D4D4D4", margin=dict(b=10, pad=15))
+                      plot_bgcolor='#515151',
+                      paper_bgcolor='#515151', font_color="#D4D4D4", margin=dict(b=10, pad=15))
     fig.update_yaxes(showgrid=True, gridwidth=1, gridcolor='#85857d')
     fig.update_layout(legend=dict(
         orientation="h",
@@ -252,8 +251,8 @@ def display_click_data(clickData, selected_prohodnoi_bal, selected_normativi, se
         )
 
         fig2.update_layout(
-            plot_bgcolor='#686c6e',
-            paper_bgcolor='#686c6e', font_color="#D4D4D4", xaxis_title=None,
+            plot_bgcolor='#515151',
+            paper_bgcolor='#515151', font_color="#D4D4D4", xaxis_title=None,
             yaxis_title=None, yaxis_range=[0, 80], title_x=0.5, margin=dict(b=10, pad=15))
         fig2.update_layout(legend=dict(
             orientation="h",

@@ -26,12 +26,15 @@
 margin: 0% 0% 3% 0%;
 }
 
+.rc-slider{
+padding: 5px 0px 15px 0px !important;
+}
+
 .rc-slider-step {
 background: linear-gradient(
     to right,
     #a9faff,
     #27d0db);
-
     }
 .card-body {
     padding-top: 0px;
@@ -52,23 +55,29 @@ padding: 0% !important;
 padding: 0% !important;
 }
 #card1.card{
-    margin-top: 0.8%;
+    margin-top: 2%;
     margin-right: 1%;
     margin-bottom: 1%;
     margin-left: 11%;
+    background: #515151;
 }
 #card2.card{
-    margin-top: 0.8%;
+    margin-top: 2%;
     margin-right: 0px;
     margin-bottom: 1%;
     margin-left: 0px;
+    background: #515151;
 }
 #card3.card{
-    margin-top: 0.8%;
+    margin-top: 2%;
     margin-right: 11%;
     margin-bottom: 1%;
     margin-left: 1%;
+    background: #515151;
 
+}
+#textarea3.textarea{
+ width: 58px !important;
 }
 .textarea{
     height: 30px;
@@ -78,35 +87,39 @@ padding: 0% !important;
     margin-bottom: 0%;
     margin-left: 0%;
     border-radius: 11px;
-    background-color: #F9F9F9;
+    background-color: #464646;
     border: none;
-    padding: 0% !important;
+
     resize: none;
     outline: none;
     text-align: center;
-    color: #5A4F4F;
+    color: white;
     float:right;
     position: absolute;
     right: 0;
     font-size: 14px;
+    padding: 3px 0;
 }
 #text1.card-text{
     height: 30px;
     width: 250px;
     margin: 2% 0% 3% 3% !important;
     padding: 0% !important;
+    color: white !important;
 }
 #text2.card-text{
     height: 30px;
     width: 250px;
     margin: 2% 0% 3% 3% !important;
     padding: 0% !important;
+    color: white !important;
 }
 #text3.card-text{
     height: 30px;
     width: 250px;
     margin: 2% 0% 3% 3% !important;
     padding: 0% !important;
+    color: white !important;
 
 }
 .container{
