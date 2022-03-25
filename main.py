@@ -8,9 +8,9 @@ from dash.dependencies import Output, Input
 import plotly.express as px
 import dash_bootstrap_components as dbc
 
-#git commit -m "Demo"
-#git push heroku main
-#heroku ps:scale web=1
+# git commit -m "Demo"
+# git push heroku main
+# heroku ps:scale web=1
 
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -33,67 +33,75 @@ app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
 
-                dbc.Row([
-                    dbc.Card([
-                        dbc.Container([
-                            dbc.Row([
-                                html.P(
-                                    "Проходной балл ЕГЭ", id='text1',
-                                    className="card-text",
-                                    style={'margin': '3% 0px 0px 3%', 'font-size': '16px', 'font-weight': 'normal',
-                                           'font-family': 'Open Sans'}),
-                                dcc.Textarea(id='textarea1', className="textarea", readOnly=True,
-                                             style={}),
+            dbc.Row([
+                dbc.Card([
+                    dbc.Container([
+                        dbc.Row([
+                            html.P(
+                                "Проходной балл ЕГЭ", id='text1',
+                                className="card-text",
+                                style={'font-size': '16px',
+                                       'font-family': 'Open Sans'}),
+                            dcc.Textarea(id='textarea1', className="textarea", readOnly=True,
+                                         style={}),
 
-                            ]),
-                            dbc.CardBody([
-                                dcc.Slider(id='prohodnoi_bal', value=32, min=32, max=42, step=1, marks=None,
-                                           className="balslider")])
-                        ], className='container-fluid'),
-
-                    ], style={"width": "25%", 'border-radius': '15px', "border": "1px #E0E0E0", "height": "80%"},
-                        id='card1'),
-                    dbc.Card([
-                        dbc.Container([
-                            dbc.Row([
-                                html.P(
-                                    "Повышающие коэффициенты", id='text2',
-                                    className="card-text",
-                                    style={'margin': '3% 0px 0px 3%', 'font-size': '16px', 'font-weight': 'normal',
-                                           'font-family': 'Open Sans'}),
-
-                                dcc.Textarea(id='textarea2', className="textarea", readOnly=True,
-                                             style={}),
-
-                            ]),
                         ]),
                         dbc.CardBody([
-                            dcc.Slider(id='normativi', value=404, min=404, max=790, step=1, marks=None,
-                                       className="normslider")]),
+                            dcc.Slider(id='prohodnoi_bal', value=32, min=32, max=42, step=1, marks=None,
+                                       className="balslider")])
+                    ], className='container-fluid'),
 
-                    ], style={"width": "25%", 'border-radius': '15px', "border": "1px #E0E0E0", "height": "80%"},
-                        id='card2'),
-                    dbc.Card([
-                        dbc.Container([
-                            dbc.Row([
-                                html.P(
-                                    "Количество бюджетных мест", id='text3',
-                                    className="card-text",
-                                    style={'margin': '3% 0px 0px 3%', 'font-size': '16px', 'font-weight': 'normal',
-                                           'font-family': 'Open Sans'}),
-                                dcc.Textarea(id='textarea3', className="textarea", readOnly=True,
-                                             style={})
-                            ]),
+                ], style={"width": "25%", 'border-radius': '15px', "border": "1px #E0E0E0", "height": "80%"},
+                    id='card1'),
+                dbc.Card([
+                    dbc.Container([
+                        dbc.Row([
+                            html.P(
+                                html.Span(
+                                    "Повышающие коэффициенты",
+                                    id="text2", className="card-text",
+                                    style={"cursor": "pointer",
+                                           'font-size': '16px',
+                                           'font-family': 'Open Sans'}
+                                ), id="p_span"),
+                            dbc.Tooltip(
+                                "Применяются повышающие коэффициенты,"
+                                "которые устанавливаются индивидуально "
+                                "для каждого региона.",
+                                target="text2", id="Tooltip", style={}
+                            ),
+                            dcc.Textarea(id='textarea2', className="textarea", readOnly=True,
+                                         style={}),
 
-                        ], className='container-fluid'),
-                        dbc.CardBody([
-                            dcc.Slider(id='kolichestvo_mest', value=10328, min=10328, max=31918, step=1, marks=None,
-                                       className="mestaslider")]),
+                        ]),
+                    ]),
+                    dbc.CardBody([
+                        dcc.Slider(id='normativi', value=404, min=404, max=790, step=1, marks=None,
+                                   className="normslider")]),
 
-                    ], style={"width": "25%", 'border-radius': '15px', "border": "1px #E0E0E0", "height": "80%"},
-                        id='card3'),
+                ], style={"width": "25%", 'border-radius': '15px', "border": "1px #E0E0E0", "height": "80%"},
+                    id='card2'),
+                dbc.Card([
+                    dbc.Container([
+                        dbc.Row([
+                            html.P(
+                                "Количество бюджетных мест", id='text3',
+                                className="card-text",
+                                style={'font-size': '16px',
+                                       'font-family': 'Open Sans'}),
+                            dcc.Textarea(id='textarea3', className="textarea", readOnly=True,
+                                         style={})
+                        ]),
 
-                ], align="center"),
+                    ], className='container-fluid'),
+                    dbc.CardBody([
+                        dcc.Slider(id='kolichestvo_mest', value=10328, min=10328, max=31918, step=1, marks=None,
+                                   className="mestaslider")]),
+
+                ], style={"width": "25%", 'border-radius': '15px', "border": "1px #E0E0E0", "height": "80%"},
+                    id='card3'),
+
+            ], align="center"),
 
         ], width={'size': 12}),
     ], style={'background-color': '#323436', 'margin-bottom': '2% '}),
@@ -150,17 +158,17 @@ def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichest
     data5 = df.loc[df['год'] == '2025']
     my_customdata = numpy.transpose(numpy.array([df["значение"], df["ed"], df["год"], df["zav"]]))
     fig = go.Figure(data=[
-        go.Bar(name='скрыть 2020 г.', x=data0['index'], y=data0['значение'], hovertext=data0['fs']+ '<br> год: 2020',
+        go.Bar(name='скрыть 2020 г.', x=data0['index'], y=data0['значение'], hovertext=data0['fs'] + '<br> год: 2020',
                marker_color='#2dbfcf'),
-        go.Bar(name='скрыть 2021 г.', x=data1['index'], y=data1['значение'], hovertext=data1['fs']+ '<br> год: 2021',
+        go.Bar(name='скрыть 2021 г.', x=data1['index'], y=data1['значение'], hovertext=data1['fs'] + '<br> год: 2021',
                marker_color='#1fad94'),
-        go.Bar(name='скрыть 2022 г.', x=data2['index'], y=data2['значение'], hovertext=data2['fs']+ '<br> год: 2022',
+        go.Bar(name='скрыть 2022 г.', x=data2['index'], y=data2['значение'], hovertext=data2['fs'] + '<br> год: 2022',
                marker_color='#148e95'),
         go.Bar(name='скрыть 2023 г.', x=data3['index'], y=data3['значение'], hovertext=data3['fs'] + '<br> год: 2023',
                marker_color='#0068b4'),
-        go.Bar(name='скрыть 2024 г.', x=data4['index'], y=data4['значение'], hovertext=data4['fs']+ '<br> год: 2024',
+        go.Bar(name='скрыть 2024 г.', x=data4['index'], y=data4['значение'], hovertext=data4['fs'] + '<br> год: 2024',
                marker_color='#309ec1'),
-        go.Bar(name='скрыть 2025 г.', x=data5['index'], y=data5['значение'], hovertext=data5['fs']+ '<br> год: 2025',
+        go.Bar(name='скрыть 2025 г.', x=data5['index'], y=data5['значение'], hovertext=data5['fs'] + '<br> год: 2025',
                marker_color='#b0d9ff')
     ])
 
@@ -198,7 +206,7 @@ def update_figure(selected_prohodnoi_bal, selected_normativi, selected_kolichest
     fig.update_layout(
         xaxis=dict(
             tickmode='array',
-            tickvals=['F1','F2', 'F3', 'F4', 'F5', 'F6', 'F8', 'F9', 'F10', 'F11', 'F13'],
+            tickvals=['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F8', 'F9', 'F10', 'F11', 'F13'],
             ticktext=['Кол-во <br>поступивших <br>в ООВО',
                       'Кол-во <br>поступивших <br>в СУЗы',
                       'Кол-во <br>трудоустроенных <br>выпускников ООВО',

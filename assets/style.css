@@ -107,10 +107,24 @@ padding: 0% !important;
     padding: 0% !important;
     color: white !important;
 }
+#p_span{
+    margin-top: 2%;
+    margin-bottom: 1rem;
+}
+
+#Tooltip .tooltip-inner {
+    max-width: 200px;
+    padding: .25rem .5rem;
+    color: #fff;
+    text-align: center;
+    background-color: #323436;
+    border-radius: 20px;
+}
+
+
 #text2.card-text{
     height: 30px;
     width: 250px;
-    margin: 2% 0% 3% 3% !important;
     padding: 0% !important;
     color: white !important;
 }
